@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using System;
-using Chess_DB.Views;
 
 namespace Chess_DB;
 
