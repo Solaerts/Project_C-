@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Chess_DB.Views.PlayersView">
+
+  <StackPanel Margin="20" Spacing="10">
+
+    <TextBlock Text="Ajouter un joueur" FontSize="18"/>
+
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <TextBox Width="200" Text="{Binding NewPlayerName}"/>
+      <Button Content="Ajouter" Command="{Binding AddPlayer}"/>
+    </StackPanel>
+
+    <ListBox Items="{Binding Players}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding FullName}"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+  </StackPanel>
+</UserControl>
