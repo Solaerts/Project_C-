@@ -24,5 +24,14 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/MainWindow.axaml]
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/CompetitionsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GamesView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/PlayersView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
