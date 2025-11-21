@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using ChessDB.ViewModels;
+using ChessDB.Views;
 
 namespace ChessDB;
 
