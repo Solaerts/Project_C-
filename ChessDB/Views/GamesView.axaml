@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:ChessDB.ViewModels"
+             x:conv="clr-namespace:ChessDB.Converters"
              x:DataType="vm:GamesViewModel"
              x:Class="ChessDB.Views.GamesView">
 
@@ -11,7 +12,7 @@
       <StackPanel>
         <TextBlock Text="Compétition"/>
         <ComboBox Width="300"
-                  Items="{Binding DataContext.CompetitionsVM.Competitions, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding DataContext.CompetitionsVM.Competitions, RelativeSource={RelativeSource AncestorType=Window}}"
                   SelectedValue="{Binding SelectedCompetitionId, Mode=TwoWay}"
                   SelectedValuePath="Id"
                   DisplayMemberPath="Name"/>
@@ -20,19 +21,19 @@
       <StackPanel>
         <TextBlock Text="Blanc"/>
         <ComboBox Width="250"
-                  Items="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
                   SelectedValue="{Binding SelectedWhitePlayer, Mode=TwoWay}"
                   SelectedValuePath="Id"
-                  DisplayMemberPath="FullName"/>
+                  ItemTemplate="{StaticResource PlayerTemplate}"/>
       </StackPanel>
 
       <StackPanel>
         <TextBlock Text="Noir"/>
         <ComboBox Width="250"
-                  Items="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
                   SelectedValue="{Binding SelectedBlackPlayer, Mode=TwoWay}"
                   SelectedValuePath="Id"
-                  DisplayMemberPath="FullName"/>
+                  ItemTemplate="{StaticResource PlayerTemplate}"/>
       </StackPanel>
     </StackPanel>
 
@@ -49,7 +50,7 @@
     </StackPanel>
 
     <TextBlock Text="Historique des parties" Margin="0,8,0,0"/>
-    <ListBox Items="{Binding Games}" Height="250">
+    <ListBox ItemsSource="{Binding Games}" Height="250">
       <ListBox.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Horizontal" Spacing="12">

@@ -12,7 +12,7 @@
     </StackPanel>
 
     <TextBlock Text="Compétitions" Margin="0,8,0,0"/>
-    <ListBox Items="{Binding Competitions}" Height="200">
+    <ListBox ItemsSource="{Binding Competitions}" Height="200">
       <ListBox.ItemTemplate>
         <DataTemplate>
           <StackPanel>
