@@ -1,5 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ChessDB.ViewModels"
+             x:DataType="vm:CompetitionsViewModel"
              x:Class="ChessDB.Views.CompetitionsView">
 
   <StackPanel Margin="12" Spacing="8">

@@ -6,3 +6,6 @@ C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\C
 C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\ChessDB.AssemblyInfo.cs
 C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\ChessDB.csproj.CoreCompileInputs.cache
 C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\ChessDB.sourcelink.json
+C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\ChessDB.dll
+C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\refint\ChessDB.dll
+C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\obj\Debug\net9.0\ChessDB.pdb

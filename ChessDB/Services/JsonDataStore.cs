@@ -6,41 +6,27 @@ using ChessDB.Models;
 
 namespace ChessDB.Services
 {
-    // Simple JSON persistence for Players, Competitions and Games.
-    public class JsonDataStore
+    public class JsonDataStore : IDataStore
     {
         private const string FilePath = "chessdb.json";
 
-        public List<Player> Players { get; set; } = new();
-        public List<Competition> Competitions { get; set; } = new();
-        public List<Game> Games { get; set; } = new();
+        public List<Player> Players { get; private set; } = new();
+        public List<Competition> Competitions { get; private set; } = new();
+        public List<Game> Games { get; private set; } = new();
 
         public JsonDataStore()
         {
-            Load();
-        }
-
-        public void Load()
-        {
-            try
+            if (File.Exists(FilePath))
             {
-                if (!File.Exists(FilePath)) return;
-
                 var json = File.ReadAllText(FilePath);
                 var dto = JsonSerializer.Deserialize<DatabaseDto>(json);
+
                 if (dto != null)
                 {
-                    Players = dto.Players ?? new List<Player>();
-                    Competitions = dto.Competitions ?? new List<Competition>();
-                    Games = dto.Games ?? new List<Game>();
+                    Players = dto.Players ?? new();
+                    Competitions = dto.Competitions ?? new();
+                    Games = dto.Games ?? new();
                 }
-            }
-            catch
-            {
-                // If load fails, start with empty dataset.
-                Players = new List<Player>();
-                Competitions = new List<Competition>();
-                Games = new List<Game>();
             }
         }
 
@@ -48,13 +34,16 @@ namespace ChessDB.Services
         {
             var dto = new DatabaseDto
             {
-                Players = Players,
-                Competitions = Competitions,
-                Games = Games
+                Players = this.Players,
+                Competitions = this.Competitions,
+                Games = this.Games
             };
 
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(dto, options);
+            var json = JsonSerializer.Serialize(dto, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
             File.WriteAllText(FilePath, json);
         }
 
