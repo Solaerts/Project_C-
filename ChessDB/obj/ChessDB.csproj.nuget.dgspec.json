@@ -64,9 +64,9 @@
               "target": "Package",
               "version": "[11.3.9, )"
             },
-            "ReactiveUI": {
+            "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[22.2.1, )"
+              "version": "[8.2.1, )"
             }
           },
           "imports": [

@@ -1,19 +1,6 @@
-using ChessDB.Services;
+﻿namespace ChessDB.ViewModels;
 
-namespace ChessDB.ViewModels
+public partial class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
-    {
-        public PlayersViewModel PlayersVM { get; }
-        public CompetitionsViewModel CompetitionsVM { get; }
-        public GamesViewModel GamesVM { get; }
-
-        public MainWindowViewModel()
-        {
-            var store = new JsonDataStore();
-            PlayersVM = new PlayersViewModel(store);
-            CompetitionsVM = new CompetitionsViewModel(store);
-            GamesVM = new GamesViewModel(store, PlayersVM, CompetitionsVM);
-        }
-    }
+    public string Greeting { get; } = "Welcome to Avalonia!";
 }
