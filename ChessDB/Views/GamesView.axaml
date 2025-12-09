@@ -15,7 +15,7 @@
       <StackPanel Spacing="5">
         <TextBlock Text="Compétition" FontWeight="SemiBold"/>
         <ComboBox Width="250"
-                  ItemsSource="{Binding DataContext.CompetitionsVM.Competitions, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding AvailableCompetitions}"
                   SelectedValue="{Binding SelectedCompetitionId, Mode=TwoWay}"
                   SelectedValueBinding="{Binding Id}"
                   DisplayMemberBinding="{Binding Name}"
@@ -25,7 +25,7 @@
       <StackPanel Spacing="5">
         <TextBlock Text="Joueur Blancs" FontWeight="SemiBold"/>
         <ComboBox Width="200"
-                  ItemsSource="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding AvailablePlayers}"
                   SelectedValue="{Binding SelectedWhitePlayer, Mode=TwoWay}"
                   SelectedValueBinding="{Binding Id}"
                   DisplayMemberBinding="{Binding FullName}"
@@ -35,7 +35,7 @@
       <StackPanel Spacing="5">
         <TextBlock Text="Joueur Noirs" FontWeight="SemiBold"/>
         <ComboBox Width="200"
-                  ItemsSource="{Binding DataContext.PlayersVM.Players, RelativeSource={RelativeSource AncestorType=Window}}"
+                  ItemsSource="{Binding AvailablePlayers}"
                   SelectedValue="{Binding SelectedBlackPlayer, Mode=TwoWay}"
                   SelectedValueBinding="{Binding Id}"
                   DisplayMemberBinding="{Binding FullName}"
@@ -53,7 +53,7 @@
           </ComboBox>
       </StackPanel>
 
-      <StackPanel Spacing="5" HAlign="Stretch" VerticalAlignment="Stretch">
+      <StackPanel Spacing="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
           <TextBlock Text="Coups (PGN)" FontWeight="SemiBold"/>
           <TextBox Width="400" Watermark="ex: 1. e4 e5 2. Nf3 ..." Text="{Binding MovesInput}"/>
       </StackPanel>

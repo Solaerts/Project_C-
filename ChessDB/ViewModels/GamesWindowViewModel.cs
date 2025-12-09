@@ -14,6 +14,10 @@ namespace ChessDB.ViewModels
 
         public ObservableCollection<Game> Games { get; }
 
+        // Elles permettent à la Vue d'accéder aux listes sans chercher dans la fenêtre parente
+        public ObservableCollection<Player> AvailablePlayers => _playersVm.Players;
+        public ObservableCollection<Competition> AvailableCompetitions => _competitionsVm.Competitions;
+
         // Properties bound to the UI ComboBoxes
         public Guid SelectedCompetitionId { get; set; }
         public Guid SelectedWhitePlayer { get; set; }
