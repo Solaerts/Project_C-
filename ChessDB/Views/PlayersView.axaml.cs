@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace ChessDB.Views
 {
-    public partial class MainWindow : Window
+    public partial class PlayersView : UserControl
     {
-        public MainWindow()
+        public PlayersView()
         {
             InitializeComponent();
         }

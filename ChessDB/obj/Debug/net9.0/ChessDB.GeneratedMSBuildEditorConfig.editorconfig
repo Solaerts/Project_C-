@@ -7,12 +7,20 @@ build_property.AvaloniaNameGeneratorFilterByNamespace = *
 build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassName
 build_property.AvaloniaNameGeneratorAttachDevTools = true
 build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ChessDB
 build_property.ProjectDir = C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\
@@ -24,8 +32,14 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GameWindow.axaml]
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/CompetitionsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GamesView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/PlayersView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

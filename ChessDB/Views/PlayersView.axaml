@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ChessDB.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ChessDB.Views.PlayersView"
+             x:DataType="vm:PlayersViewModel">
+
+  <StackPanel Margin="12" Spacing="8">
+    <TextBlock Text="Gestion des joueurs" FontSize="16" FontWeight="Bold"/>
+    
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBox Width="300" 
+               Watermark="Nom complet (ex: Magnus Carlsen)" 
+               Text="{Binding NewPlayerName, Mode=TwoWay}" />
+      <Button Content="Ajouter" Command="{Binding AddPlayerCommand}" />
+    </StackPanel>
+
+    <TextBlock Text="Liste des joueurs" Margin="0,15,0,5" FontWeight="SemiBold"/>
+    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+        <ListBox ItemsSource="{Binding Players}" Height="300">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="{Binding FullName}" FontWeight="Bold" Width="200"/>
+                <TextBlock Text="ELO:" Foreground="Gray"/>
+                <TextBlock Text="{Binding Elo}" />
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+    </Border>
+  </StackPanel>
+</UserControl>

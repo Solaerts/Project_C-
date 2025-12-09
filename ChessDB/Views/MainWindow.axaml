@@ -3,26 +3,31 @@
         xmlns:vm="using:ChessDB.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:views="clr-namespace:ChessDB.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         x:Class="ChessDB.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ChessDB">
+        Title="Chess Federation Manager">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TabControl
-        Margin = "0 16"
-        TabStripPlacement = "Top">
-        <TabItem Header="Greeting">
-            <vm:GameWindowViewModel/>
+    <TabControl Margin="5">
+        
+        <TabItem Header="Joueurs" FontSize="16">
+            <views:PlayersView DataContext="{Binding PlayersVM}"/>
         </TabItem>
-        <TabItem Header="Games">
-            <TextBlock Text="Games View Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TabItem Header="Compétitions" FontSize="16">
+            <views:CompetitionsView DataContext="{Binding CompetitionsVM}"/>
         </TabItem>
+
+        <TabItem Header="Matchs" FontSize="16">
+            <views:GamesView DataContext="{Binding GamesVM}"/>
+        </TabItem>
+
     </TabControl>
+
 </Window>

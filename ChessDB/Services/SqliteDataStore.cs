@@ -37,5 +37,24 @@ namespace ChessDB.Services
         {
             _context.SaveChanges();
         }
+
+        public void AddCompetition(Competition competition)
+        {
+            _context.Competitions.Add(competition);
+            _context.SaveChanges();
+        }
+
+        public void AddGame(Game game)
+        {
+            _context.Games.Add(game);
+            _context.SaveChanges();
+        }
+
+        public void UpdatePlayer(Player player)
+        {
+            // EF Core tracks objects automatically if they were loaded from the context.
+            // If we modify properties, we just need to SaveChanges.
+            _context.SaveChanges();
+        }
     }
 }

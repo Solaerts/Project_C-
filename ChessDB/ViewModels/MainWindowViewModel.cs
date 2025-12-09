@@ -1,6 +1,20 @@
-﻿namespace ChessDB.ViewModels;
+﻿using ChessDB.Models;
+using ChessDB.Services;
 
-public partial class MainWindowViewModel : ViewModelBase
+namespace ChessDB.ViewModels
 {
-    public string Greeting { get; } = "Welcome to Avalonia!";
+    public class MainWindowViewModel : ViewModelBase
+    {
+        public PlayersViewModel PlayersVM { get; }
+        public CompetitionsViewModel CompetitionsVM { get; }
+        public GamesViewModel GamesVM { get; }
+
+        // We inject the Interface here (Dependency Injection)
+        public MainWindowViewModel(IDataStore dataStore)
+        {
+            PlayersVM = new PlayersViewModel(dataStore);
+            CompetitionsVM = new CompetitionsViewModel(dataStore);
+            GamesVM = new GamesViewModel(dataStore, PlayersVM, CompetitionsVM);
+        }
+    }
 }
