@@ -1,11 +1,9 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
-using System.Linq;
 using Avalonia.Markup.Xaml;
 using ChessDB.ViewModels;
 using ChessDB.Views;
+using ChessDB.Services; // Add this namespace
 
 namespace ChessDB;
 
@@ -20,12 +18,16 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
-            DisableAvaloniaDataAnnotationValidation();
+            // 1. Create the Database Service
+            var dataStore = new SqliteDataStore();
+
+            // 2. Pass it to the ViewModel
+            // (You might need to update MainWindowViewModel constructor to accept IDataStore)
+            var vm = new MainWindowViewModel(dataStore); 
+
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = vm
             };
         }
 
