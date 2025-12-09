@@ -17,5 +17,20 @@ namespace ChessDB.Data
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "chess_club.db");
             optionsBuilder.UseSqlite($"Data Source={dbPath}");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // On explique la relation pour le joueur blanc
+            modelBuilder.Entity<Game>()
+                .HasOne(g => g.WhitePlayer)           // Une partie a un Joueur Blanc
+                .WithMany(p => p.GamesAsWhite)        // Un joueur a plusieurs parties en tant que Blanc
+                .HasForeignKey(g => g.WhitePlayerId); // La clé étrangère est WhitePlayerId
+
+            // On explique la relation pour le joueur noir
+            modelBuilder.Entity<Game>()
+                .HasOne(g => g.BlackPlayer)           // Une partie a un Joueur Noir
+                .WithMany(p => p.GamesAsBlack)        // Un joueur a plusieurs parties en tant que Noir
+                .HasForeignKey(g => g.BlackPlayerId); // La clé étrangère est BlackPlayerId
+        }
     }
 }
