@@ -1,7 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ReactiveUI;
 
-namespace ChessDB.ViewModels;
-
-public abstract class ViewModelBase : ObservableObject
+namespace ChessDB.ViewModels
 {
+    // C'est l'héritage de ReactiveObject qui permet d'utiliser RaiseAndSetIfChanged
+    public class ViewModelBase : ReactiveObject
+    {
+    }
 }

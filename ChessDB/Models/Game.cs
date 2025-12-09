@@ -24,6 +24,7 @@ namespace ChessDB.Models
         public Competition? Competition { get; set; }
 
         public string Moves { get; set; } = ""; 
+        public string Result { get; set; } = "1-0"; // Stocke le texte "1-0", "0-1" ou "1/2-1/2"
         public Guid? WinnerId { get; set; }
         public DateTime PlayedAt { get; set; } = DateTime.UtcNow;
     }
