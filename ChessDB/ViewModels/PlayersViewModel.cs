@@ -13,11 +13,26 @@ namespace ChessDB.ViewModels
 
         public ObservableCollection<Player> Players { get; }
         
-        private string _newPlayerName = "";
-        public string NewPlayerName
+        // Nouveaux champs de saisie
+        private string _newFirstName = "";
+        public string NewFirstName
         {
-            get => _newPlayerName;
-            set => this.RaiseAndSetIfChanged(ref _newPlayerName, value);
+            get => _newFirstName;
+            set => this.RaiseAndSetIfChanged(ref _newFirstName, value);
+        }
+
+        private string _newLastName = "";
+        public string NewLastName
+        {
+            get => _newLastName;
+            set => this.RaiseAndSetIfChanged(ref _newLastName, value);
+        }
+
+        private int _newAge = 18;
+        public int NewAge
+        {
+            get => _newAge;
+            set => this.RaiseAndSetIfChanged(ref _newAge, value);
         }
 
         public ICommand AddPlayerCommand { get; }
@@ -25,25 +40,32 @@ namespace ChessDB.ViewModels
         public PlayersViewModel(IDataStore store)
         {
             _store = store;
-            // Load data from DB into the ObservableCollection for the UI
             Players = new ObservableCollection<Player>(_store.Players);
             
-            AddPlayerCommand = new RelayCommand(_ => AddPlayer(), _ => !string.IsNullOrWhiteSpace(NewPlayerName));
+            // La commande n'est active que si Nom et Prénom sont remplis
+            AddPlayerCommand = new RelayCommand(_ => AddPlayer(), 
+                _ => !string.IsNullOrWhiteSpace(NewFirstName) && !string.IsNullOrWhiteSpace(NewLastName));
         }
 
         public void AddPlayer()
         {
-            if (string.IsNullOrWhiteSpace(NewPlayerName)) return;
+            if (string.IsNullOrWhiteSpace(NewFirstName) || string.IsNullOrWhiteSpace(NewLastName)) return;
 
-            var p = new Player { FullName = NewPlayerName.Trim(), Elo = 1200 };
+            var p = new Player 
+            { 
+                FirstName = NewFirstName.Trim(),
+                LastName = NewLastName.Trim(),
+                Age = NewAge,
+                Elo = 1200 // ELO par défaut
+            };
             
-            // 1. Add to Database
             _store.AddPlayer(p);
-
-            // 2. Add to UI List (so we see it immediately without restarting)
             Players.Add(p);
             
-            NewPlayerName = "";
+            // Remise à zéro des champs
+            NewFirstName = "";
+            NewLastName = "";
+            NewAge = 18;
         }
 
         public Player? GetById(System.Guid id) => Players.FirstOrDefault(p => p.Id == id);

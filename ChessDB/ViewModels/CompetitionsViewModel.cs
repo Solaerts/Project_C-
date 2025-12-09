@@ -11,7 +11,6 @@ namespace ChessDB.ViewModels
     public class CompetitionsViewModel : ViewModelBase
     {
         private readonly IDataStore _store;
-
         public ObservableCollection<Competition> Competitions { get; }
 
         private string _newCompetitionName = "";
@@ -19,6 +18,13 @@ namespace ChessDB.ViewModels
         {
             get => _newCompetitionName;
             set => this.RaiseAndSetIfChanged(ref _newCompetitionName, value);
+        }
+
+        private int _gamesCount = 10;
+        public int GamesCount
+        {
+            get => _gamesCount;
+            set => this.RaiseAndSetIfChanged(ref _gamesCount, value);
         }
 
         public ICommand AddCompetitionCommand { get; }
@@ -34,12 +40,17 @@ namespace ChessDB.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewCompetitionName)) return;
 
-            var c = new Competition { Name = NewCompetitionName.Trim() };
+            var c = new Competition 
+            { 
+                Name = NewCompetitionName.Trim(),
+                TotalGamesPlanned = GamesCount
+            };
             
             _store.AddCompetition(c);
             Competitions.Add(c);
             
             NewCompetitionName = "";
+            GamesCount = 10;
         }
 
         public Competition? GetById(Guid id) => Competitions.FirstOrDefault(c => c.Id == id);

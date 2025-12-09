@@ -1,37 +1,43 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ChessDB.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ChessDB.Views.CompetitionsView"
              x:DataType="vm:CompetitionsViewModel">
 
-  <StackPanel Margin="12" Spacing="8">
-    <TextBlock Text="Gestion des compétitions" FontSize="16" FontWeight="Bold"/>
+  <StackPanel Margin="20" Spacing="15">
+    <TextBlock Text="Créer une Compétition" FontSize="18" FontWeight="Bold" Foreground="#2c3e50"/>
     
-    <StackPanel Orientation="Horizontal" Spacing="8">
-      <TextBox Width="300" 
-               Watermark="Nom de la compétition" 
-               Text="{Binding NewCompetitionName, Mode=TwoWay}" />
-      <Button Content="Créer" Command="{Binding AddCompetitionCommand}" />
-    </StackPanel>
+    <Border Background="#ecf0f1" CornerRadius="8" Padding="15">
+        <StackPanel Spacing="10" Orientation="Horizontal">
+            <StackPanel Width="250">
+                <TextBlock Text="Nom de la compétition"/>
+                <TextBox Text="{Binding NewCompetitionName}" Watermark="ex: Tournoi d'Hiver 2025"/>
+            </StackPanel>
+            
+            <StackPanel Margin="10,0,0,0">
+                <TextBlock Text="Nombre de parties"/>
+                <NumericUpDown Value="{Binding GamesCount}" Minimum="1" Maximum="100" Width="150"/>
+            </StackPanel>
 
-    <TextBlock Text="Compétitions existantes" Margin="0,15,0,5" FontWeight="SemiBold"/>
-    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
-        <ListBox ItemsSource="{Binding Competitions}" Height="250">
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <StackPanel Spacing="2">
-                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                    <TextBlock Text="Nombre de parties enregistrées :" FontSize="12" Foreground="Gray"/>
-                    <TextBlock Text="{Binding Games.Count, FallbackValue='?'}" FontSize="12"/>
-                </StackPanel>
-              </StackPanel>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>
+            <Button Content="Créer" 
+                    Command="{Binding AddCompetitionCommand}" 
+                    VerticalAlignment="Bottom" Margin="15,0,0,0"
+                    Background="#27ae60" Foreground="White"/>
+        </StackPanel>
     </Border>
+
+    <TextBlock Text="Liste des Compétitions" FontSize="16" FontWeight="SemiBold" Margin="0,10,0,0"/>
+    
+    <ListBox ItemsSource="{Binding Competitions}" Height="300" Background="White">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Width="200"/>
+                    <TextBlock Text="{Binding TotalGamesPlanned, StringFormat='Parties prévues: {0}'}" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Games.Count, StringFormat='Jouées: {0}'}" Foreground="Blue"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
   </StackPanel>
 </UserControl>

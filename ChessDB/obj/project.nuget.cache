@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+ntNCYlqwT0=",
+  "dgSpecHash": "opZjdsXsA4g=",
   "success": true,
   "projectFilePath": "C:\\Users\\Amélie\\Desktop\\Code_BA3\\Tech_web\\Project_C-\\ChessDB\\ChessDB.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.buildservices\\11.3.2\\avalonia.buildservices.11.3.2.nupkg.sha512",
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.controls.colorpicker\\11.3.9\\avalonia.controls.colorpicker.11.3.9.nupkg.sha512",
+    "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.controls.datagrid\\11.3.9\\avalonia.controls.datagrid.11.3.9.nupkg.sha512",
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.desktop\\11.3.9\\avalonia.desktop.11.3.9.nupkg.sha512",
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.diagnostics\\11.3.9\\avalonia.diagnostics.11.3.9.nupkg.sha512",
     "C:\\Users\\Amélie\\.nuget\\packages\\avalonia.fonts.inter\\11.3.9\\avalonia.fonts.inter.11.3.9.nupkg.sha512",
