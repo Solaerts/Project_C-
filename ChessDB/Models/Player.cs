@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ReactiveUI; // <--- 1. CETTE LIGNE EST OBLIGATOIRE
+using ReactiveUI; // 1. Indispensable
 
 namespace ChessDB.Models
 {
-    // 2. L'HÉRITAGE " : ReactiveObject" EST OBLIGATOIRE
-    public class Player : ReactiveObject
+    // 2. Indispensable
+    public class Player : ReactiveObject 
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -16,12 +16,12 @@ namespace ChessDB.Models
         public string LastName { get; set; } = string.Empty;
         public int Age { get; set; }
 
-        // 3. LA PROPRIÉTÉ ELO DOIT ÊTRE ÉCRITE COMME CECI :
+        // 3. Indispensable pour que l'écran bouge
         private int _elo = 1200;
         public int Elo 
         { 
             get => _elo; 
-            set => this.RaiseAndSetIfChanged(ref _elo, value); // <--- C'EST CA QUI MET À JOUR L'ÉCRAN
+            set => this.RaiseAndSetIfChanged(ref _elo, value); 
         }
 
         [NotMapped] 
