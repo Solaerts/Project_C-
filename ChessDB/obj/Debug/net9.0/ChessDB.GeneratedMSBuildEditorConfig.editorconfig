@@ -35,6 +35,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/CompetitionsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GameDetailsWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GamesView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

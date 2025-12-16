@@ -22,7 +22,7 @@
 
                 <StackPanel Grid.Column="2" Grid.Row="0">
                     <TextBlock Text="Âge"/>
-                    <NumericUpDown Value="{Binding NewAge}" Minimum="5" Maximum="100" Width="80"/>
+                    <NumericUpDown Value="{Binding NewAge}" Minimum="5" Maximum="100" Width="120"/>
                 </StackPanel>
             </Grid>
             
@@ -39,8 +39,10 @@
         <DataGrid.Columns>
             <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" Width="*"/>
             <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" Width="*"/>
-            <DataGridTextColumn Header="Âge" Binding="{Binding Age}" Width="50"/>
-            <DataGridTextColumn Header="ELO" Binding="{Binding Elo}" Width="60"/>
+            
+            <DataGridTextColumn Header="Âge" Binding="{Binding Age}" Width="80"/>
+            <DataGridTextColumn Header="ELO" Binding="{Binding Elo}" Width="80"/>
+            
         </DataGrid.Columns>
     </DataGrid>
   </StackPanel>

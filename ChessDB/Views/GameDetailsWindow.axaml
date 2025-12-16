@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ChessDB.ViewModels"   
+        xmlns:models="using:ChessDB.Models"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
+        x:Class="ChessDB.Views.GameDetailsWindow"
+        
+        x:DataType="vm:GameDetailsViewModel" 
+        
+        Title="Détail de la partie"
+        Width="400" Height="600"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid RowDefinitions="Auto, *">
+        <Border Background="#2c3e50" Padding="15">
+            <TextBlock Text="{Binding Title}" 
+                       Foreground="White" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       FontSize="18"/>
+        </Border>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding MovesList}" Padding="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:MoveDisplay">
+                    <StackPanel Orientation="Horizontal" Spacing="15" Margin="5">
+                        
+                        <Border Width="20" Height="20" 
+                                CornerRadius="10" 
+                                Background="{Binding Color}" 
+                                BorderBrush="Gray" 
+                                BorderThickness="1"/>
+
+                        <TextBlock Text="{Binding Text}" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="14"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

@@ -1,7 +1,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using ReactiveUI;
+using System.Reactive.Linq;
+using System.Reactive; 
+using ReactiveUI;      
 using ChessDB.Models;
 using ChessDB.Utils;
 
@@ -10,10 +11,8 @@ namespace ChessDB.ViewModels
     public class PlayersViewModel : ViewModelBase
     {
         private readonly IDataStore _store;
-
         public ObservableCollection<Player> Players { get; }
         
-        // Nouveaux champs de saisie
         private string _newFirstName = "";
         public string NewFirstName
         {
@@ -35,34 +34,41 @@ namespace ChessDB.ViewModels
             set => this.RaiseAndSetIfChanged(ref _newAge, value);
         }
 
-        public ICommand AddPlayerCommand { get; }
+        public ReactiveCommand<Unit, Unit> AddPlayerCommand { get; }
 
         public PlayersViewModel(IDataStore store)
         {
             _store = store;
             Players = new ObservableCollection<Player>(_store.Players);
-            
-            // La commande n'est active que si Nom et Prénom sont remplis
-            AddPlayerCommand = new RelayCommand(_ => AddPlayer(), 
-                _ => !string.IsNullOrWhiteSpace(NewFirstName) && !string.IsNullOrWhiteSpace(NewLastName));
+
+            // On définit quand la commande peut s'exécuter.
+            // WhenAnyValue observe les changements de NewFirstName et NewLastName en temps réel.
+            var canAddPlayer = this.WhenAnyValue(
+            x => x.NewFirstName,
+            x => x.NewLastName,
+            (firstName, lastName) => 
+                !string.IsNullOrWhiteSpace(firstName) && 
+                !string.IsNullOrWhiteSpace(lastName)
+            )
+            .ObserveOn(RxApp.MainThreadScheduler);
+
+            AddPlayerCommand = ReactiveCommand.Create(AddPlayer, canAddPlayer);
         }
+
 
         public void AddPlayer()
         {
-            if (string.IsNullOrWhiteSpace(NewFirstName) || string.IsNullOrWhiteSpace(NewLastName)) return;
-
             var p = new Player 
             { 
                 FirstName = NewFirstName.Trim(),
                 LastName = NewLastName.Trim(),
                 Age = NewAge,
-                Elo = 1200 // ELO par défaut
+                Elo = 1200 
             };
             
             _store.AddPlayer(p);
             Players.Add(p);
             
-            // Remise à zéro des champs
             NewFirstName = "";
             NewLastName = "";
             NewAge = 18;

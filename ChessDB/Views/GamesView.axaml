@@ -54,8 +54,10 @@
       </StackPanel>
 
       <StackPanel Spacing="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-          <TextBlock Text="Coups (PGN)" FontWeight="SemiBold"/>
-          <TextBox Width="400" Watermark="ex: 1. e4 e5 2. Nf3 ..." Text="{Binding MovesInput}"/>
+          <TextBlock Text="Coups" FontWeight="SemiBold"/>
+          <TextBox Width="400" 
+          Watermark="Séparez par une virgule (ex: Pion en D-15, Fou en F-4...)" 
+          Text="{Binding MovesInput}"/>
       </StackPanel>
 
       <Button Content="Enregistrer Partie" 
@@ -66,32 +68,33 @@
 
     <TextBlock Text="Historique des parties" Margin="0,15,0,5" FontWeight="SemiBold"/>
     <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
-        <ListBox ItemsSource="{Binding Games}" Height="250">
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <Grid ColumnDefinitions="Auto, *, Auto, Auto" Margin="5">
-                  <TextBlock Grid.Column="0" 
-                             Text="{Binding PlayedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" 
-                             Foreground="Gray" Margin="0,0,15,0" VerticalAlignment="Center"/>
-                  
-                  <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                      <TextBlock Text="{Binding WhitePlayer.FullName, FallbackValue='White'}" FontWeight="Bold"/>
-                      <TextBlock Text=" vs " Margin="5,0"/>
-                      <TextBlock Text="{Binding BlackPlayer.FullName, FallbackValue='Black'}" FontWeight="Bold"/>
-                  </StackPanel>
+      <ListBox ItemsSource="{Binding Games}" Height="250">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <Grid ColumnDefinitions="Auto, *, Auto, Auto" Margin="5">
+                <TextBlock Grid.Column="0" 
+                          Text="{Binding PlayedAt, StringFormat='{}{0:yyyy-MM-dd}'}" 
+                          Foreground="Gray" Margin="0,0,15,0" VerticalAlignment="Center"/>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding WhitePlayer.FullName}" FontWeight="Bold"/>
+                    <TextBlock Text=" vs " Margin="5,0"/>
+                    <TextBlock Text="{Binding BlackPlayer.FullName}" FontWeight="Bold"/>
+                </StackPanel>
 
-                  <TextBlock Grid.Column="2" 
-                             Text="{Binding Result, StringFormat='Résultat: {0}'}" 
-                             FontWeight="Bold" Margin="15,0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" 
+                          Text="{Binding Result}" 
+                          FontWeight="Bold" Margin="15,0" VerticalAlignment="Center"/>
 
-                  <TextBlock Grid.Column="3" 
-                             Text="{Binding Moves}" 
-                             FontStyle="Italic" Foreground="Gray" 
-                             TextTrimming="CharacterEllipsis" MaxWidth="150" VerticalAlignment="Center"/>
-              </Grid>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>
+                <Button Grid.Column="3" 
+                        Content="Voir les coups" 
+                        FontSize="12"
+                        Click="OnOpenDetailsClick" 
+                        Tag="{Binding}"/> 
+            </Grid>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
     </Border>
 
   </StackPanel>

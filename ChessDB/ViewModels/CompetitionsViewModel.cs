@@ -1,8 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using ReactiveUI;
+using System.Reactive;      // Nécessaire pour 'Unit'
+using System.Reactive.Linq; // <--- INDISPENSABLE pour '.ObserveOn'
+using ReactiveUI;           // Nécessaire pour ReactiveCommand
 using ChessDB.Models;
 using ChessDB.Utils;
 
@@ -27,19 +28,28 @@ namespace ChessDB.ViewModels
             set => this.RaiseAndSetIfChanged(ref _gamesCount, value);
         }
 
-        public ICommand AddCompetitionCommand { get; }
+        // On utilise ReactiveCommand ici
+        public ReactiveCommand<Unit, Unit> AddCompetitionCommand { get; }
 
         public CompetitionsViewModel(IDataStore store)
         {
             _store = store;
             Competitions = new ObservableCollection<Competition>(_store.Competitions);
-            AddCompetitionCommand = new RelayCommand(_ => AddCompetition(), _ => !string.IsNullOrWhiteSpace(NewCompetitionName));
+
+            // Surveillance des changements
+            var canAddCompetition = this.WhenAnyValue(
+                x => x.NewCompetitionName,
+                (name) => !string.IsNullOrWhiteSpace(name)
+            )
+            .ObserveOn(RxApp.MainThreadScheduler); // <--- EMPECHE LE CRASH "Invalid Thread"
+
+            // Création de la commande avec la condition de sécurité
+            AddCompetitionCommand = ReactiveCommand.Create(AddCompetition, canAddCompetition);
         }
 
         public void AddCompetition()
         {
-            if (string.IsNullOrWhiteSpace(NewCompetitionName)) return;
-
+            // Pas besoin de revérifier IsNullOrWhiteSpace ici, le bouton est désactivé sinon
             var c = new Competition 
             { 
                 Name = NewCompetitionName.Trim(),
