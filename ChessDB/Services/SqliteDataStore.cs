@@ -50,10 +50,11 @@ namespace ChessDB.Services
             _context.SaveChanges();
         }
 
+        // Cette méthode est cruciale pour l'ELO
         public void UpdatePlayer(Player player)
         {
-            // EF Core tracks objects automatically if they were loaded from the context.
-            // If we modify properties, we just need to SaveChanges.
+            // Comme l'objet 'player' vient déjà de la liste chargée par le contexte,
+            // EF Core sait qu'il a été modifié. On a juste besoin de valider.
             _context.SaveChanges();
         }
     }
