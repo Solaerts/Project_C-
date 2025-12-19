@@ -1,5 +1,6 @@
 Rapport de Projet : Chess Federation Manager (ChessDB)
 1. Introduction et Mise en Contexte
+
 Ce projet a pour objectif la création d'une application de bureau permettant de gérer les activités d'une fédération d'échecs. L'application, nommée ChessDB, a été développée en C# avec le framework Avalonia UI (version .NET 9), en adoptant l'architecture MVVM (Model-View-ViewModel) via la librairie ReactiveUI.
 
 Le but principal est de fournir une interface intuitive pour :
@@ -15,6 +16,7 @@ Calculer et mettre à jour automatiquement le classement ELO des joueurs après 
 La persistance des données est assurée par une base de données SQLite gérée via l'ORM Entity Framework Core, garantissant la portabilité et la robustesse de l'application.
 
 2. Fonctionnalité Supplémentaire (Bonus)
+
 Pour la fonctionnalité bonus, j'ai implémenté un "Easter Egg" ludique accessible via une séquence de touches secrète (le célèbre Konami Code).
 
 Description : Lorsque l'utilisateur tape la séquence Haut, Haut, Bas, Bas, Gauche, Droite, Gauche, Droite, Entrée sur le clavier (depuis la fenêtre principale), une fenêtre cachée s'ouvre.
@@ -28,6 +30,7 @@ Utilisation de l'événement KeyDown avec une stratégie de "Tunneling" pour int
 Un DiscoViewModel dédié utilise System.Reactive (Observable.Interval) pour gérer le chronomètre d'animation sans bloquer l'interface utilisateur.
 
 3. Diagramme de Classes
+
 Ce diagramme illustre la structure principale de l'application, séparant les Modèles (Données), les ViewModels (Logique) et les Services.
 
 classDiagram
@@ -88,7 +91,9 @@ classDiagram
     GamesViewModel ..> EloCalculator : Uses
     ViewModelBase <|-- GamesViewModel
     ViewModelBase <|-- PlayersViewModel
+
 4. Diagramme de Séquences
+
 Ce diagramme détaille le processus d'ajout d'un match, qui est l'action la plus complexe car elle implique la mise à jour de l'ELO des joueurs.
 
 sequenceDiagram
@@ -118,7 +123,9 @@ sequenceDiagram
     
     VM-->>View: Mise à jour de la liste (Games.Add)
     View-->>User: Affiche la nouvelle partie
+
 5. Diagramme d'Activité
+
 Ce diagramme montre le flux de travail utilisateur lors de l'enregistrement d'une partie.
 
 flowchart TD
@@ -138,7 +145,9 @@ flowchart TD
     J --> K([Fin])
     
     C --> B
+
 6. Adaptabilité du Projet
+
 Bien que conçu pour une fédération d'échecs, ce projet présente une forte adaptabilité pour d'autres fédérations sportives (ex: Tennis, Badminton, Go, E-sport) pour les raisons suivantes :
 
 Abstraction des concepts : Les classes Player et Game sont génériques. Elles ne contiennent pas de règles spécifiques aux échecs (comme le déplacement des pièces). Seul le résultat (Gagnant/Perdant/Nul) compte.
@@ -148,6 +157,7 @@ Système ELO universel : Le moteur de calcul EloCalculator implémente l'algorit
 Architecture Modulaire : Grâce à l'injection de dépendances (voir point suivant), on pourrait facilement remplacer le SqliteDataStore par une API Web ou un fichier JSON si la nouvelle fédération a des besoins de stockage différents, sans toucher au reste de l'application.
 
 7. Principes SOLID Utilisés
+
 Le projet respecte plusieurs principes de conception SOLID pour assurer sa maintenabilité.
 
 A. Dependency Inversion Principle (DIP) - Inversion des Dépendances
@@ -169,6 +179,7 @@ GamesViewModel : Ne s'occupe que de faire le lien entre l'utilisateur et les don
 Avantage : Si on veut changer la formule ELO, on ne risque pas de casser la base de données. Si on change le design de la fenêtre, on ne risque pas de fausser les calculs.
 
 8. Conclusion
+
 Ce projet m'a permis de mettre en pratique les concepts fondamentaux du développement d'applications modernes en C#. J'ai pu appréhender la puissance du pattern MVVM avec Avalonia et ReactiveUI, qui offre une séparation claire entre l'interface et le code. L'intégration d'Entity Framework Core a simplifié la gestion des données relationnelles.
 
 La réalisation de la fonctionnalité bonus et la gestion des cas limites (comme la mise à jour réactive de l'interface lors des changements d'ELO) ont renforcé ma compréhension de la programmation événementielle et réactive. Le résultat est une application fonctionnelle, robuste et facilement extensible à d'autres contextes sportifs.
