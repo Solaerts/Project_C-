@@ -1,4 +1,4 @@
-Rapport de Projet : Chess Federation Manager (ChessDB)
+
 1. Introduction et Mise en Contexte
 
 Ce projet a pour objectif la création d'une application de bureau permettant de gérer les activités d'une fédération d'échecs. L'application, nommée ChessDB, a été développée en C# avec le framework Avalonia UI (version .NET 9), en adoptant l'architecture MVVM (Model-View-ViewModel) via la librairie ReactiveUI.
@@ -33,69 +33,72 @@ Un DiscoViewModel dédié utilise System.Reactive (Observable.Interval) pour gé
 
 Ce diagramme illustre la structure principale de l'application, séparant les Modèles (Données), les ViewModels (Logique) et les Services.
 
-    classDiagram
-        class Player {
-            +Guid Id
-            +string FirstName
-            +string LastName
-            +int Elo
-            +ICollection~Game~ GamesAsWhite
-            +ICollection~Game~ GamesAsBlack
-        }
+'''mermaid
+classDiagram
+    class Player {
+        +Guid Id
+        +string FirstName
+        +string LastName
+        +int Elo
+        +ICollection~Game~ GamesAsWhite
+        +ICollection~Game~ GamesAsBlack
+    }
 
-        class Game {
-            +Guid Id
-            +Guid WhitePlayerId
-            +Guid BlackPlayerId
-            +string Result
-            +DateTime PlayedAt
-        }
+    class Game {
+        +Guid Id
+        +Guid WhitePlayerId
+        +Guid BlackPlayerId
+        +string Result
+        +DateTime PlayedAt
+    }
 
-        class IDataStore {
-            <<interface>>
-            +List~Player~ Players
-            +List~Game~ Games
-            +void AddGame(Game g)
-            +void UpdatePlayer(Player p)
-        }
+    class IDataStore {
+        <<interface>>
+        +List~Player~ Players
+        +List~Game~ Games
+        +void AddGame(Game g)
+        +void UpdatePlayer(Player p)
+    }
 
-        class SqliteDataStore {
-            -ChessDbContext _context
-            +void UpdatePlayer(Player p)
-        }
+    class SqliteDataStore {
+        -ChessDbContext _context
+        +void UpdatePlayer(Player p)
+    }
 
-        class ViewModelBase {
-            <<abstract>>
-        }
+    class ViewModelBase {
+        <<abstract>>
+    }
 
-        class GamesViewModel {
-            -IDataStore _store
-            +ObservableCollection~Game~ Games
-            +void AddGame()
-        }
+    class GamesViewModel {
+        -IDataStore _store
+        +ObservableCollection~Game~ Games
+        +void AddGame()
+    }
 
-        class PlayersViewModel {
-            -IDataStore _store
-            +ObservableCollection~Player~ Players
-        }
+    class PlayersViewModel {
+        -IDataStore _store
+        +ObservableCollection~Player~ Players
+    }
 
-        class EloCalculator {
-            <<static>>
-            +UpdateElo(int white, int black, double score)
-        }
+    class EloCalculator {
+        <<static>>
+        +UpdateElo(int white, int black, double score)
+    }
 
-        SqliteDataStore ..|> IDataStore
-        Player "1" -- "*" Game : Plays
-        GamesViewModel --> IDataStore
-        PlayersViewModel --> IDataStore
-        GamesViewModel ..> EloCalculator : Uses
-        ViewModelBase <|-- GamesViewModel
-        ViewModelBase <|-- PlayersViewModel
+    SqliteDataStore ..|> IDataStore
+    Player "1" -- "*" Game : Plays
+    GamesViewModel --> IDataStore
+    PlayersViewModel --> IDataStore
+    GamesViewModel ..> EloCalculator : Uses
+    ViewModelBase <|-- GamesViewModel
+    ViewModelBase <|-- PlayersViewModel
+'''
 
 4. Diagramme de Séquences
 
 Ce diagramme détaille le processus d'ajout d'un match, qui est l'action la plus complexe car elle implique la mise à jour de l'ELO des joueurs.
 
+'''mermaid
 sequenceDiagram
     actor User
     participant View as GamesView
@@ -123,11 +126,12 @@ sequenceDiagram
     
     VM-->>View: Mise à jour de la liste (Games.Add)
     View-->>User: Affiche la nouvelle partie
+'''
 
 5. Diagramme d'Activité
 
 Ce diagramme montre le flux de travail utilisateur lors de l'enregistrement d'une partie.
-
+'''mermaid
 flowchart TD
     A([Début]) --> B{Sélection Joueurs}
     B -->|Joueurs Identiques| C[Désactiver Bouton Ajout]
@@ -145,6 +149,7 @@ flowchart TD
     J --> K([Fin])
     
     C --> B
+'''
 
 6. Adaptabilité du Projet
 
