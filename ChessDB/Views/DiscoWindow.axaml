@@ -9,7 +9,7 @@
         Background="{Binding BackgroundBrush}">
 
     <Grid>
-        <TextBlock Text="✨ CONGRATULATIONS YOU FOUND THE EASTER EGG ! ✨" 
+        <TextBlock Text="DONNEZ MOI UN 20 SVP !!!" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="30" 
