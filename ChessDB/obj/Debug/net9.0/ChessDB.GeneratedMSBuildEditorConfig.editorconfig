@@ -22,27 +22,32 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v9.0
 build_property.RootNamespace = ChessDB
-build_property.ProjectDir = C:\Users\Amélie\Desktop\Code_BA3\Tech_web\Project_C-\ChessDB\
+build_property.ProjectDir = C:\Users\nicol\Documents\GitHub\Project_C-\ChessDB\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/App.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/CompetitionsView.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/CompetitionsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GameDetailsWindow.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/DiscoWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/GamesView.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/GameDetailsWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/MainWindow.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/GamesView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Amélie/Desktop/Code_BA3/Tech_web/Project_C-/ChessDB/Views/PlayersView.axaml]
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/nicol/Documents/GitHub/Project_C-/ChessDB/Views/PlayersView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
