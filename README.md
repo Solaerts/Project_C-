@@ -13,7 +13,7 @@ Enregistrer les matchs joués entre deux joueurs.
 
 Calculer et mettre à jour automatiquement le classement ELO des joueurs après chaque partie.
 
-La persistance des données est assurée par une base de données SQLite gérée via l'ORM Entity Framework Core, garantissant la portabilité et la robustesse de l'application.
+La persistance des données est assurée par une base de données SQLite, garantissant la portabilité et la robustesse de l'application.
 
 2. Fonctionnalité Supplémentaire (Bonus)
 
@@ -21,7 +21,7 @@ Pour la fonctionnalité bonus, j'ai implémenté un "Easter Egg" ludique accessi
 
 Description : Lorsque l'utilisateur tape la séquence Haut, Haut, Bas, Bas, Gauche, Droite, Gauche, Droite, Entrée sur le clavier (depuis la fenêtre principale), une fenêtre cachée s'ouvre.
 
-Comportement : Cette fenêtre, baptisée "Disco Mode", affiche un message de félicitations sur un fond qui change de couleur ou d'image de manière cyclique et rapide, créant une ambiance festive.
+Comportement : Cette fenêtre, baptisée "Disco Mode", affiche un message sur un fond qui change de couleur ou d'image de manière cyclique et rapide.
 
 Implémentation Technique :
 
@@ -131,6 +131,7 @@ sequenceDiagram
 5. Diagramme d'Activité
 
 Ce diagramme montre le flux de travail utilisateur lors de l'enregistrement d'une partie.
+
 ```mermaid
 flowchart TD
     A([Début]) --> B{Sélection Joueurs}
@@ -166,14 +167,12 @@ Architecture Modulaire : Grâce à l'injection de dépendances (voir point suiva
 Le projet respecte plusieurs principes de conception SOLID pour assurer sa maintenabilité.
 
 A. Dependency Inversion Principle (DIP) - Inversion des Dépendances
-Description : Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. Les deux doivent dépendre d'abstractions. Justification dans le projet : Les ViewModels (GamesViewModel, PlayersViewModel) ne connaissent pas la classe concrète SqliteDataStore. Ils ne connaissent que l'interface IDataStore.
+Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. Les deux doivent dépendre d'abstractions. Les ViewModels (GamesViewModel, PlayersViewModel) ne connaissent pas la classe concrète SqliteDataStore. Ils ne connaissent que l'interface IDataStore.
 
-Code : public GamesViewModel(IDataStore store) { ... }
-
-Avantage : Cela permet de changer la base de données (passer de SQLite à MySQL ou à une fausse base de données pour les tests) sans changer une seule ligne de code dans les ViewModels.
+Cela permet de changer la base de données (passer de SQLite à MySQL ou à une fausse base de données pour les tests) sans changer une seule ligne de code dans les ViewModels.
 
 B. Single Responsibility Principle (SRP) - Responsabilité Unique
-Description : Une classe ne doit avoir qu'une seule raison de changer. Justification dans le projet : Nous avons séparé la logique métier de la logique de présentation et de l'accès aux données.
+Une classe ne doit avoir qu'une seule raison de changer. Nous avons séparé la logique métier de la logique de présentation et de l'accès aux données.
 
 EloCalculator : Ne s'occupe que des mathématiques. Il ne sait pas ce qu'est une base de données ou une fenêtre.
 
@@ -181,7 +180,7 @@ SqliteDataStore : Ne s'occupe que de parler à la base de données (Sauvegarder,
 
 GamesViewModel : Ne s'occupe que de faire le lien entre l'utilisateur et les données.
 
-Avantage : Si on veut changer la formule ELO, on ne risque pas de casser la base de données. Si on change le design de la fenêtre, on ne risque pas de fausser les calculs.
+Si on veut changer la formule ELO, on ne risque pas de casser la base de données. Si on change le design de la fenêtre, on ne risque pas de fausser les calculs.
 
 8. Conclusion
 
