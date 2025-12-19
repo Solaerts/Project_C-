@@ -33,7 +33,7 @@ Un DiscoViewModel dédié utilise System.Reactive (Observable.Interval) pour gé
 
 Ce diagramme illustre la structure principale de l'application, séparant les Modèles (Données), les ViewModels (Logique) et les Services.
 
-'''mermaid
+```mermaid
 classDiagram
     class Player {
         +Guid Id
@@ -92,13 +92,13 @@ classDiagram
     GamesViewModel ..> EloCalculator : Uses
     ViewModelBase <|-- GamesViewModel
     ViewModelBase <|-- PlayersViewModel
-'''
+```
 
 4. Diagramme de Séquences
 
 Ce diagramme détaille le processus d'ajout d'un match, qui est l'action la plus complexe car elle implique la mise à jour de l'ELO des joueurs.
 
-'''mermaid
+```mermaid
 sequenceDiagram
     actor User
     participant View as GamesView
@@ -126,12 +126,12 @@ sequenceDiagram
     
     VM-->>View: Mise à jour de la liste (Games.Add)
     View-->>User: Affiche la nouvelle partie
-'''
+```
 
 5. Diagramme d'Activité
 
 Ce diagramme montre le flux de travail utilisateur lors de l'enregistrement d'une partie.
-'''mermaid
+```mermaid
 flowchart TD
     A([Début]) --> B{Sélection Joueurs}
     B -->|Joueurs Identiques| C[Désactiver Bouton Ajout]
@@ -149,7 +149,7 @@ flowchart TD
     J --> K([Fin])
     
     C --> B
-'''
+```
 
 6. Adaptabilité du Projet
 
