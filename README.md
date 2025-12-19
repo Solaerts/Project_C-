@@ -33,64 +33,64 @@ Un DiscoViewModel dédié utilise System.Reactive (Observable.Interval) pour gé
 
 Ce diagramme illustre la structure principale de l'application, séparant les Modèles (Données), les ViewModels (Logique) et les Services.
 
-classDiagram
-    class Player {
-        +Guid Id
-        +string FirstName
-        +string LastName
-        +int Elo
-        +ICollection~Game~ GamesAsWhite
-        +ICollection~Game~ GamesAsBlack
-    }
+    classDiagram
+        class Player {
+            +Guid Id
+            +string FirstName
+            +string LastName
+            +int Elo
+            +ICollection~Game~ GamesAsWhite
+            +ICollection~Game~ GamesAsBlack
+        }
 
-    class Game {
-        +Guid Id
-        +Guid WhitePlayerId
-        +Guid BlackPlayerId
-        +string Result
-        +DateTime PlayedAt
-    }
+        class Game {
+            +Guid Id
+            +Guid WhitePlayerId
+            +Guid BlackPlayerId
+            +string Result
+            +DateTime PlayedAt
+        }
 
-    class IDataStore {
-        <<interface>>
-        +List~Player~ Players
-        +List~Game~ Games
-        +void AddGame(Game g)
-        +void UpdatePlayer(Player p)
-    }
+        class IDataStore {
+            <<interface>>
+            +List~Player~ Players
+            +List~Game~ Games
+            +void AddGame(Game g)
+            +void UpdatePlayer(Player p)
+        }
 
-    class SqliteDataStore {
-        -ChessDbContext _context
-        +void UpdatePlayer(Player p)
-    }
+        class SqliteDataStore {
+            -ChessDbContext _context
+            +void UpdatePlayer(Player p)
+        }
 
-    class ViewModelBase {
-        <<abstract>>
-    }
+        class ViewModelBase {
+            <<abstract>>
+        }
 
-    class GamesViewModel {
-        -IDataStore _store
-        +ObservableCollection~Game~ Games
-        +void AddGame()
-    }
+        class GamesViewModel {
+            -IDataStore _store
+            +ObservableCollection~Game~ Games
+            +void AddGame()
+        }
 
-    class PlayersViewModel {
-        -IDataStore _store
-        +ObservableCollection~Player~ Players
-    }
+        class PlayersViewModel {
+            -IDataStore _store
+            +ObservableCollection~Player~ Players
+        }
 
-    class EloCalculator {
-        <<static>>
-        +UpdateElo(int white, int black, double score)
-    }
+        class EloCalculator {
+            <<static>>
+            +UpdateElo(int white, int black, double score)
+        }
 
-    SqliteDataStore ..|> IDataStore
-    Player "1" -- "*" Game : Plays
-    GamesViewModel --> IDataStore
-    PlayersViewModel --> IDataStore
-    GamesViewModel ..> EloCalculator : Uses
-    ViewModelBase <|-- GamesViewModel
-    ViewModelBase <|-- PlayersViewModel
+        SqliteDataStore ..|> IDataStore
+        Player "1" -- "*" Game : Plays
+        GamesViewModel --> IDataStore
+        PlayersViewModel --> IDataStore
+        GamesViewModel ..> EloCalculator : Uses
+        ViewModelBase <|-- GamesViewModel
+        ViewModelBase <|-- PlayersViewModel
 
 4. Diagramme de Séquences
 
